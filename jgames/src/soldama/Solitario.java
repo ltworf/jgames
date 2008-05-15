@@ -2,7 +2,7 @@
 jgames
 Copyright (C) 2007  Salvo "LtWorf" Tomaselli
 
-Weborf is free software: you can redistribute it and/or modify
+jgames is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
@@ -41,8 +41,8 @@ implements ActionListener{
 	JButton EndGame = new JButton("End game");
 	JButton cmdDifficult = new JButton("Difficult");
 	JLabel lblCounter= new JLabel();
-	JLabel lblWeb= new JLabel("http://supersalvus.altervista.org");
-	JLabel lblWeb1= new JLabel("sourceforge.net/projects/smallgamesc/");
+	JLabel lblWeb= new JLabel("http://galileo.dmi.unict.it/wiki/jgames/");
+	JLabel lblWeb1= new JLabel("http://galileo.dmi.unict.it/svn/jgames/");
 	
 	SelectedPiece piece= new SelectedPiece();
 	
