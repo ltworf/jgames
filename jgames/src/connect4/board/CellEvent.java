@@ -17,33 +17,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @author Salvo "LtWorf" Tomaselli <tiposchi@libero.it>
  */
-package jmines;
+package connect4.board;
 
-
-import javax.swing.UIManager;
-
-import jmines.util.MinePlacer;
-public class JMines {
-
+/**
+ * @author salvo
+ *
+ * To change the template for this generated type comment go to
+ * Window - Preferences - Java - Code Generation - Code and Comments
+ */
+public interface CellEvent {
+    
     /**
-     * @param args
+     * Event sent to the player if requested to know wich button is pressed on the board.
+     * @param row
+     * @param col
      */
-    public static void main(String[] args) {
-        
-        try {
-            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } 
-            
-            //""
-            //"com.sun.java.swing.plaf.windows.WindowsLookAndFeel"*/
-        MinePlacer.newGame(8,8,10);
-        
-        
-    }
+    public void cellPress(int row,int col);
     
-    
+    /**
+     * Returns true if the player must move
+     * @return
+     */
+    public boolean move();
 
 }
