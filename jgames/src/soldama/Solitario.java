@@ -16,7 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @author Salvo "LtWorf" Tomaselli <tiposchi@libero.it>
-
  */
 package soldama;
 
@@ -40,6 +39,7 @@ implements ActionListener{
 	JButton[][] Tabella = new JButton[11][11];
 	JButton EndGame = new JButton("End game");
 	JButton cmdDifficult = new JButton("Difficult");
+        JButton cmdAbout = new JButton("About");
 	JLabel lblCounter= new JLabel();
 	JLabel lblWeb= new JLabel("http://galileo.dmi.unict.it/wiki/jgames/");
 	JLabel lblWeb1= new JLabel("http://galileo.dmi.unict.it/svn/jgames/");
@@ -54,31 +54,40 @@ implements ActionListener{
 	
     public Solitario() {
            
-            getContentPane().setLayout(null);
+            getContentPane().setLayout(new BorderLayout());
             
             { 
-            	getContentPane().add(EndGame);
-            	EndGame.setBounds(30,230,150,20);            	
-            	EndGame.addActionListener(this);
+                
+                EndGame.addActionListener(this);
+                cmdDifficult.addActionListener(this);
+                cmdAbout.addActionListener(this);
+                
+                JPanel bottom=new JPanel();
+                bottom.setLayout(new GridLayout(5,1));
+                
+            	bottom.add(EndGame);
+                bottom.add(cmdDifficult);
+                bottom.add(cmdAbout);
+                bottom.add(lblWeb);
+            	bottom.add(lblWeb1);
             	
-            	getContentPane().add(cmdDifficult);
-            	cmdDifficult.setBounds(30,253,150,20);
-            	cmdDifficult.addActionListener(this);
+            	this.getContentPane().add(bottom,BorderLayout.SOUTH);
+                
             	
-            	getContentPane().add(lblCounter);
+                
+                JPanel center= new JPanel();
+                center.setLayout(null);
+                
+            	center.add(lblCounter);
             	lblCounter.setBounds(143,0,100,20);
             	
-            	getContentPane().add(lblWeb);
-            	lblWeb.setBounds(5,283,260,20);
-            	
-            	getContentPane().add(lblWeb1);
-            	lblWeb1.setBounds(2,303,260,20);
+                center.setPreferredSize(new Dimension(220,230));
             	
             	
             	for (byte x = 0; x <11 ; x++){//Crea la tabella   		
             		for (byte y=0; y<11; y++){
             		    Tabella[x][y]= new JButton("");
-            		    getContentPane().add(Tabella[x][y]);
+            		    center.add(Tabella[x][y]);
             			Tabella[x][y].setBounds(x*20,y*20,20,20);    
             			Tabella[x][y].addActionListener(this);   			
             		}
@@ -130,27 +139,19 @@ implements ActionListener{
             		Tabella[10][9].setVisible(false);
             		Tabella[10][10].setVisible(false);
             	}
-		
-            	//Posiziona i pezzi sulla scacchiera
+		getContentPane().add(center,BorderLayout.CENTER);
+                
+            	//Places pieces on the board
             	piece.remaining= difficult.placePieces(Tabella,lblCounter);
             	
             		
             }
-            
-            addWindowListener(new WindowAdapter() {
-                public void windowClosing(WindowEvent e) {
-                    System.exit(0);
-                }
-            });
-            
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             
     		this.pack(); 	
-    		this.setBounds(20,20,260,360);
-    		this.setResizable(false);
+    		//this.setResizable(false);
     		this.setTitle("Solitario Dama");
     		this.setVisible(true);	
-
-        
     }
     
 	public void actionPerformed(ActionEvent arg0) {		
@@ -158,7 +159,9 @@ implements ActionListener{
 		if (b==EndGame){
 		    piece.remaining= difficult.placePieces(Tabella,lblCounter);
 		    piece.eat=0;
-		} else if (b==cmdDifficult){
+		} else if (b==cmdAbout) {
+                    common.About.showAbout();
+                } else if (b==cmdDifficult){
 			System.out.println("Show difficult window");
 		    difficult.pack();
 		    difficult.setVisible(true);

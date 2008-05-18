@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @author Salvo "LtWorf" Tomaselli <tiposchi@libero.it>
  */
-package connect4.connect4;
+package common;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -40,10 +40,10 @@ public class About{
     private static final long serialVersionUID = 1393199473374096148L;
     
     public static final String version = "0.0.0.1"; //Version of this game
-    public static final String author = "Salvo Tomaselli"; //Author of this game
+    public static final String author = "Salvo \"LtWorf\"Tomaselli"; //Author of this game
     public static final String authorWeb = "http://supersalvus.altervista.org"; //Author's page
-    public static final String authorMail = "tiposchi@users.sourceforge.net";//Author's email
-    public static final String gameWeb = "https://sourceforge.net/projects/smallgamesc/";//Project's page
+    public static final String authorMail = "tiposchi@libero.it";//Author's email
+    public static final String gameWeb = "http://galileo.dmi.unict.it/wiki/jgames/";//Project's page
     
     public static void printConsoleInfo(){
         System.out.println(
@@ -55,18 +55,14 @@ public class About{
     public static void showAbout(){
         JFrame frame = new JFrame ("Connect 4 - About");
         
-        
         JTextPane text = new JTextPane ();
-        text.setContentType("text/html; charset=ISO-8859-1");
+        text.setContentType("text/html; charset=UTF-8");
         try {
-            text.setPage(About.class.getResource("about.html"));
+            text.setPage(common.About.class.getResource("about.html"));
         } catch (IOException e) {
             System.err.println("Unable to load the page");
             text.setText("Unable to load the page");
         }
-
-
-        
         
         text.setMinimumSize(new Dimension(500,150));
         text.setPreferredSize(new Dimension(700,250));

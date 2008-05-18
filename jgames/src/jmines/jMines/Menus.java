@@ -51,39 +51,15 @@ public class Menus extends JToolBar {
         
         about.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) {
-                JScrollPane scroll = new JScrollPane( new JTextArea(
-                        "jgames\n"+
-                        "Copyright (C) 2007  Salvo \"LtWorf\" Tomaselli\n"+
-                        "\n"+
-                        "jgames is free software: you can redistribute it and/or modify\n"+
-                        "it under the terms of the GNU General Public License as published by\n"+
-                        "the Free Software Foundation, either version 3 of the License, or\n"+
-                        "(at your option) any later version.\n"+
-                        "\n"+
-                        "This program is distributed in the hope that it will be useful,\n"+
-                        "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"+
-                        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"+
-                        "GNU General Public License for more details.*\n"+
-                        "\n"+
-                        "You should have received a copy of the GNU General Public License\n"+
-                        "along with this program.  If not, see <http://www.gnu.org/licenses/>.\n"+
-                        "\n\nhttp://galileo.dmi.unict.it/wiki/jgames/"
-                        ));
-                                   
-                                   
-                                    
-                                    JFrame frame = new JFrame("About");
-                                    frame.add(scroll);
-                                    frame.pack();
-                                    frame.setVisible(true);
-                
+            public void actionPerformed(ActionEvent e) { 
+                common.About.showAbout();                
             }
             
         });
         
         close.addActionListener(new ActionListener() {
 
+            
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }

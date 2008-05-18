@@ -49,8 +49,9 @@ public class Numeri extends JPanel implements ActionListener {
     byte numero;
     
     //Completa
-    JButton about= new JButton("Help");
+    JButton about= new JButton("About");
     JButton restart = new JButton("Restart");
+    JButton help=new JButton("Help");
     
     //Indirizzo sito
     JLabel lblWeb= new JLabel("galileo.dmi.unict.it/wiki/jgames");
@@ -71,54 +72,66 @@ public class Numeri extends JPanel implements ActionListener {
         this.setOpaque(true); 
         frame.setContentPane(this);
         
-        frame.getContentPane().setLayout(null);
+        frame.getContentPane().setLayout(new BorderLayout());
+                
         
-        //Aggiunge la label
-        frame.getContentPane().add(lblWeb);
-        lblWeb.setBounds(0,80,250,30);
-        lblWeb.setForeground(Color.BLUE);
+        //Adds extra stuff
+        {
+            about.addActionListener(this);
+            restart.addActionListener(this);
+            help.addActionListener(this);
+            
+            lblWeb.setForeground(Color.BLUE);
+            lblWeb1.setForeground(Color.BLUE);
+            
+            JPanel p= new JPanel();
+            p.setLayout(new GridLayout(5,1));
+            
+            p.add(restart);
+            p.add(help);
+            p.add(about);
+            p.add(lblWeb);
+            p.add(lblWeb1);
+            
+            frame.getContentPane().add(p,BorderLayout.SOUTH);
+            
+        }
         
-        frame.getContentPane().add(lblWeb1);
-        lblWeb1.setBounds(0,110,250,30);
-        lblWeb1.setForeground(Color.BLUE);
+        {
+            JPanel p=new JPanel();
+            p.setLayout(null);
+            for (int c=0; c< casella.length;c++){
+                casella[c]= new JButton("   ");
+                p.add( casella[c]);
+                casella[c].addActionListener(this);
+            }            
+            casella[0].setBounds(50,0,50,20);
+            casella[1].setBounds(100,0,50,20);
         
-        //Aggiunge i pulsanti
-        frame.getContentPane().add(about);
-        about.setBounds(35,140,130,25);
-        about.addActionListener(this);
+            casella[2].setBounds(00,20,50,20);
+            casella[3].setBounds(50,20,50,20);
+            casella[4].setBounds(100,20,50,20);
+            casella[5].setBounds(150,20,50,20);
+
+            casella[6].setBounds(50,40,50,20);
+            casella[7].setBounds(100,40,50,20);
         
-        frame.getContentPane().add(restart);
-        restart.setBounds(35,165,130,25);
-        restart.addActionListener(this);
+            standard=casella[0].getBackground();
+            
+            p.setPreferredSize(new Dimension(200,80));
+            frame.getContentPane().add(p,BorderLayout.CENTER);
+        }
         
-        for (int c=0; c< casella.length;c++){
-            casella[c]= new JButton("   ");
-            frame.getContentPane().add( casella[c]);
-            casella[c].addActionListener(this);
-        }            
-        casella[0].setBounds(50,0,50,20);
-        casella[1].setBounds(100,0,50,20);
-        
-        casella[2].setBounds(00,20,50,20);
-        casella[3].setBounds(50,20,50,20);
-        casella[4].setBounds(100,20,50,20);
-        casella[5].setBounds(150,20,50,20);
-        
-        casella[6].setBounds(50,40,50,20);
-        casella[7].setBounds(100,40,50,20);
-        
-        standard=casella[0].getBackground();
         
         
         frame.pack();
-        frame.setBounds(10,10,260,225);        
         frame.setVisible(true);
-        frame.setResizable(false);
+        //frame.setResizable(false);
    }
     
     private void init(){
         numero=0;
-        about.setText("Help");
+        about.setText("About");
         
         for (int c=0; c< casella.length;c++){
             casella[c].setText("   ");
@@ -134,11 +147,12 @@ public class Numeri extends JPanel implements ActionListener {
             if (pulsante==casella[c] && casella[c].getText().equals("   ")) casella[c].setText(Byte.toString(++numero));
             if (numero==8) controlla();
         }  
-        if (pulsante==about) JOptionPane.showMessageDialog(this,
+        if (pulsante==about) common.About.showAbout();
+        else if (pulsante==help)
+ JOptionPane.showMessageDialog(this,
                 "Rules are very simple: \n"+"You must place a number in each box, you start placing 1 and you end placing 8 \n"+
                 "When you have filled all the boxes, Numbers will check what you have done. \n"+
-                "To win, each number must be far from number+1 and number-1\n"+
-                "\n Under GNU GPLv3\n\nAuthor: Salvo Tomaselli <tiposchi@libero.it>"
+                "To win, each number must be far from number+1 and number-1"
                 ,"Numbers", JOptionPane.PLAIN_MESSAGE);
         else if (pulsante==restart) this.init();
 		} 

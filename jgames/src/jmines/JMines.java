@@ -19,9 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package jmines;
 
-
-import javax.swing.UIManager;
-
 import jmines.util.MinePlacer;
 public class JMines {
 
@@ -32,7 +29,7 @@ public class JMines {
         
         try {
             //UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
         } 
